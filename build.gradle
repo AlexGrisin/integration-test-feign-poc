@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.12.0'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+allure {
+    version = '2.29.0'
+}
+
+dependencies {
+    implementation 'io.github.openfeign:feign-core:13.6'
+    implementation 'io.github.openfeign:feign-okhttp:13.6'
+    implementation 'io.github.openfeign:feign-jackson:13.6'
+    implementation 'io.github.openfeign:feign-slf4j:13.6'
+
+    implementation 'com.google.cloud:google-cloud-bigquery:2.51.0'
+
+    testImplementation 'org.testng:testng:7.10.2'
+
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+
+    testImplementation 'io.qameta.allure:allure-testng:2.29.0'
+}
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+    }
+}
